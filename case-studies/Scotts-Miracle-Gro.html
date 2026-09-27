@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scotts Miracle-Gro: Usability Research Studies at Scotts-Miracle-Gro</title>
+    <meta name="description" content="A UXR case study detailing multiple projects (OtO Lawn, Ace Last Mile, Ortho Problem Solver) focused on usability, conversion, and digital experience optimization at Scotts Miracle-Gro.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Scotts Miracle-Gro Palette
+                        'accent-primary': '#028558', // Deep Sea Green (Primary Accent)
+                        'accent-secondary': '#1F2937', // Black/Dark Gray (Secondary Accent, used for borders/text)
+                        
+                        // Tertiary/Indicator Colors - Mapped for consistency
+                        'accent-warm': '#028558', // Mapping Tertiary to Deep Sea Green
+                        'success-soft': '#028558', // Mapping Success/Mint to Deep Sea Green
+                        
+                        // Base Colors
+                        'secondary-gray': '#F9FAFB', // Very light background
+                        'text-dark': '#1F2937', // Dark gray for body text
+                        'tag-bg': '#028558', // Tag background color
+                        'tag-text': '#FFFFFF', // Tag text color
+
+                        //Ace colors
+                        'ace-red': '#e82d34',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans text-text-dark antialiased">
+    <!-- Collapsible Vertical Fixed Scroll Navigation -->
+<nav id="sidebar-nav" class="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col bg-white/80 backdrop-blur-md p-2 rounded-2xl border border-gray-200 shadow-lg text-xs font-medium max-h-[80vh] transition-all duration-300 w-52 group">
+    <div class="flex items-center justify-between px-2 py-1.5 border-b border-gray-100 mb-1">
+        <span class="nav-text font-semibold text-gray-500 uppercase tracking-wider text-[10px]">Contents</span>
+        <button id="nav-toggle" class="p-1 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-colors" title="Toggle Navigation">
+            <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="flex flex-col space-y-1 overflow-y-auto overflow-x-hidden pr-1">
+        <a href="#introduction" class="nav-link flex items-center space-x-3 px-2.5 py-2 rounded-xl text-gray-600 hover:text-accent-rose hover:bg-gray-100 transition-all duration-150">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300 link-dot shrink-0 transition-all"></span>
+            <span class="nav-text whitespace-nowrap">1. Introduction</span>
+        </a>
+        <a href="#project-goals" class="nav-link flex items-center space-x-3 px-2.5 py-2 rounded-xl text-gray-600 hover:text-accent-rose hover:bg-gray-100 transition-all duration-150">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300 link-dot shrink-0 transition-all"></span>
+            <span class="nav-text whitespace-nowrap">2. Problem & Goals</span>
+        </a>
+        <a href="#methodology" class="nav-link flex items-center space-x-3 px-2.5 py-2 rounded-xl text-gray-600 hover:text-accent-rose hover:bg-gray-100 transition-all duration-150">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300 link-dot shrink-0 transition-all"></span>
+            <span class="nav-text whitespace-nowrap">3. Methodology</span>
+        </a>
+        <a href="#design" class="nav-link flex items-center space-x-3 px-2.5 py-2 rounded-xl text-gray-600 hover:text-accent-blue hover:bg-gray-100 transition-all duration-150">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300 link-dot shrink-0 transition-all"></span>
+            <span class="nav-text whitespace-nowrap">4. Key Insights</span>
+        </a>
+        <a href="#outcomes" class="nav-link flex items-center space-x-3 px-2.5 py-2 rounded-xl text-gray-600 hover:text-accent-blue hover:bg-gray-100 transition-all duration-150">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300 link-dot shrink-0 transition-all"></span>
+            <span class="nav-text whitespace-nowrap">5. Brainstorming</span>
+        </a>
+    </div>
+</nav>
+
+    <header class="py-6 bg-secondary-gray border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-extrabold text-accent-primary">Scotts Miracle-Gro</a>
+            <a href="../index.html" class="text-sm font-medium text-gray-600 hover:text-accent-primary transition duration-150 ease-in-out px-3 py-1 bg-white rounded-full border border-gray-300 shadow-sm">
+                ← Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        
+        <section class="mb-16">
+            <span class="text-sm font-semibold text-accent-primary uppercase tracking-wider">UX RESEARCH INTERNSHIP | SCOTTS MIRACLE-GRO</span>
+            <h1 class="text-5xl font-extrabold mt-2 mb-6 leading-tight">
+                Supporting Gardeners and Landscapers Through a Customer-First Digital Experience
+            </h1>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600 border-t border-b py-4 mb-8">
+                <div>
+                    <p class="font-bold text-gray-900">Job Type</p>
+                    <p>Internship</p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-900">ROLE</p>
+                    <p>UX Research Intern</p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-900">TIMELINE</p>
+                    <p>May 2024 - August 2024 (3 Months)</p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-900">METHODS</p>
+                    <p>Usability Testing (UserTesting), Ideation, Low-Fidelity Prototyping</p>
+                </div>
+            </div>
+        </section>
+        <details open class="group mb-8 p-8 bg-white border-4 border-dashed border-gray-300 rounded-xl" id="introduction">
+    <summary class="text-3xl font-bold mb-4 border-b-4 border-accent-primary/70 inline-block text-accent-primary flex justify-between items-center pb-1 text-accent-rose cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+        1. Introduction
+        
+        <span class="text-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M20 12H4" />
+                
+                <path class="transition-opacity duration-300 group-open:opacity-0" 
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M12 4v16" />
+            </svg>
+        </span>
+    </summary>
+            <p class="text-lg space-y-4" style = "margin-bottom:20px">
+                <b>Summary:</b> Supported conducting and leading usability tests and analyzing heatmapping data. 
+            </p>
+            
+            <div class="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-lg border-4 border-accent-primary/70 mb-8">
+                <img src="../assets/imgs/scotts.jpg" alt="Diagram showing the digital ecosystem for Scotts brands and key interaction points." class="w-full h-full object-contain">
+            </div>
+        </details>
+
+        <details open class="group mb-8 p-8 bg-white border-4 border-dashed border-gray-300 rounded-xl" id="project-goals">
+            <summary class="text-3xl font-bold mb-4 border-b-4 border-accent-primary/70 inline-block pb-1 text-accent-primary flex justify-between items-center pb-1 text-accent-rose cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                2. Project Areas & Goals
+                 <span class="text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M20 12H4" />
+                        
+                        <path class="transition-opacity duration-300 group-open:opacity-0" 
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M12 4v16" />
+                    </svg>
+                </span>
+            </summary>
+            <div class="text-lg space-y-4">
+                <p>
+                    My work was split into three main projects to support all of the brands across the Scotts Miracle-Gro company to help support customers with their digital commerce and search experience. 
+                </p>
+                 <h3 class="text-xl font-semibold mt-6 mb-2">Project 1: Subscription Feature Usability Protocol (Customer Insight)</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><b>Goal</b>: Better understand customers' interactions and feedback, as well as their understanding of the subscription <i>"call-to-action button"</i> across Scotts.com and AeroGarden.com.</li>
+                </ul>
+
+                <div class="grid grid-cols-2 gap-8 mb-8">
+    
+                    <div class="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-lg border border-gray-600">
+                        <img src="../assets/imgs/scotts-subscription.png" alt="Mockup of a subscription call-to-action button on Scotts.com." class="w-full h-full object-cover">
+                    </div>
+    
+                    <div class="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-lg border border-gray-600">
+                        <img src="../assets/imgs/aerogarden-subscription.png" alt="Mockup of a subscription call-to-action button on AeroGarden.com." class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Project 2: Brand-Wide Heatmapping Initiative (Cursor Tracking Analytics)</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><b>Goal</b>: Investigate and identify patterns of customers' interactions (scrolling, clicking, other mouse movement) by reviewing 50+ hours of heatmapping footage across all Scotts Miracle-Gro brand websites.</li>
+                </ul>
+    
+   <div class="flex flex-col space-y-4 py-6 lg:flex-row lg:space-x-4 lg:space-y-0 lg:py-6 bg-gray-200 rounded-xl overflow-hidden shadow-lg mb-8 p-4 lg:aspect-video">
+
+    <div class="w-full lg:w-1/2 flex flex-col items-center justify-start h-full">
+        <img src="../assets/imgs/st.augustine.png" 
+            alt="Example of a website heatmap showing user click and scroll patterns." 
+            class="w-full object-contain max-h-[40vh] lg:max-h-none lg:h-[85%] lg:mb-4"> 
+        
+        <p class="text-sm text-gray-600 mt-2 text-center">
+            St. Augustine Grass Heatmap
+        </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 flex flex-col items-center justify-start h-full">
+        <img src="../assets/imgs/installation&care.png" 
+            alt="Placeholder for a horizontal image 1" 
+            class="w-full object-contain max-h-[40vh] lg:max-h-none lg:h-[85%] lg:mb-4">
+        
+        <p class="text-sm text-gray-600 mt-2 text-center">
+            Scotts Provista Installation and Care Heatmap
+        </p>
+    </div>
+    
+</div>
+                <h3 class="text-xl font-semibold mt-6 mb-2">Project 3: Ace Last Mile Usability (Conversion Funnel)</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><b>Goal</b>: Determine if users understood the "Delivery By Ace" CTA and provide recommendations to streamline the Ace checkout experience.</li>
+                </ul>
+                <div class="bg-gray-200 rounded-xl overflow-hidden shadow-lg mb-8 p-4 flex flex-col items-center justify-center">
+                    <img src="../assets/imgs/delivery-by-ace-cta.png" alt="Mockup of the Ace Last Mile integration on a product detail page." class="w-full h-auto object-contain">
+
+                      <p class="text-sm text-gray-600 mt-4 px-4 text-center max-w-4xl">
+                        Ace Last Mile CTA: A Means to get Scotts Product Delivered Right to Your Doorstep
+                    </p>
+                </div>
+               
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Project 4: OtO Lawn Website Usability (Brand Clarity)</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><b>Goal</b>: Assess whether users understood what the OtO Lawn device offers (including the benefits/drawbacks) to inform cross-functional partners of a potential investment opportunity.</li>
+                </ul>
+                <div class="bg-gray-200 rounded-xl overflow-hidden shadow-lg mb-8 p-4 flex flex-col items-center justify-center">
+    
+                    <div class="w-full max-w-3xl"> 
+                        <img src="../assets/imgs/oto-website.png" 
+                            alt="Screenshot of the OtO Lawn product page highlighting key features." 
+                            class="w-full h-auto object-contain rounded-md">
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mt-4 px-4 text-center max-w-4xl">
+                        OtO Smart Sprinkler: An Automated Smart Irrigation System for Lawn Care
+                    </p>
+                    
+                </div>
+            </div>
+        </details>
+
+        <details open class="group mb-8 p-8 bg-white border-4 border-dashed border-gray-300 rounded-xl" id="methodology">
+            <summary class="text-3xl font-bold mb-4 border-b-4 border-accent-primary/70 inline-block pb-1 text-accent-primary flex justify-between items-center pb-1 text-accent-rose cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                3. Methodology & Key Findings
+                  <span class="text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M20 12H4" />
+                        
+                        <path class="transition-opacity duration-300 group-open:opacity-0" 
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M12 4v16" />
+                    </svg>
+                </span>
+            </summary>
+            <div class="text-lg space-y-4">
+                <h3 class="text-xl font-semibold mt-6 mb-2">Methodology: Usability Testing & Ideation</h3>
+                <p>
+                    For the OtO Lawn, Ace Last Mile and Scotts and AeroGarden subscription projects, my team and I conducted usability testing (N=6 participants each) via UserTesting. The Ortho project utilized low-fidelity prototyping from the insights that were obtained from meeting the Ortho brand and in-store teams. 
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-6">
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-inner">
+                        <p class="font-bold text-lg mb-2">Usability Test Protocol</p>
+                        <ul class="list-disc pl-5 text-base marker:text-accent-primary">
+                            <li><b>Planning</b>: Used <i>Whimsical</i> to structure tasks, test scenarios, and map user flow expectations (OtO, Ace, Subscription).</li>
+                            <li><b>Execution</b>: Launched tests on <i>UserTesting</i> platform to observe user behavior and gather spoken feedback.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-inner">
+                        <p class="font-bold text-lg mb-2">Ideation & Design</p>
+                        <ul class="list-disc pl-5 text-base marker:text-accent-primary">
+                            <li><b>Process</b>: Brainstorming, user flow diagramming, and creating low-fidelity sketches (Ortho Problem Solver).</li>
+                            <li><b>Goal</b>: Define an intuitive, regionalized solution for pest/weed identification and product recommendation.</li>
+                        </ul>
+                    </div>
+                </div>
+              <div id="scotts-ace-carousel" class="relative rounded-xl overflow-hidden shadow-lg my-8" data-carousel="static">
+    
+                        <div class="relative h-[25rem] md:h-[30rem] bg-gray-200" data-carousel-inner>
+                            
+                            <div class="duration-700 ease-in-out py-4" data-carousel-item>
+                                <img src="../assets/imgs/Picture2.png" alt="Screenshot of our Whimsical user test plan." class="object-contain w-full h-full">
+                            </div>
+                            
+                         <div class="duration-700 ease-in-out hidden py-4" data-carousel-item>
+                            <img src="../assets/imgs/delivery-by-ace-1.jpg" 
+                            alt="Description of second image." 
+                            class="object-contain w-full h-full"> 
+                        </div>
+                            
+                        </div>
+
+                      <style>
+                        /* Active = black background, white text */
+                        [data-carousel-slide-to][aria-current="true"] {
+                            background-color: rgb(0 0 0); /* black */
+                            color: white;
+                        }
+
+                        /* Inactive = dark gray background, black text */
+                        [data-carousel-slide-to][aria-current="false"] {
+                            background-color: rgb(107 114 128); /* Tailwind gray-600 */
+                            color: black;
+                        }
+                        </style>
+
+                        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-4 left-1/2">
+                        <!-- Number 1 indicator (active) -->
+                        <button
+                            type="button"
+                            class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm transition"
+                            aria-current="true"
+                            aria-label="Slide 1"
+                            data-carousel-slide-to="0">
+                            1
+                        </button>
+
+                        <!-- Number 2 indicator (inactive) -->
+                        <button
+                            type="button"
+                            class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm transition"
+                            aria-current="false"
+                            aria-label="Slide 2"
+                            data-carousel-slide-to="1">
+                            2
+                        </button>
+                        </div>
+
+
+
+                        <button type="button" class="flex absolute top-1/2 left-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition -translate-y-1/2" data-carousel-prev>
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        
+                        <button type="button" class="flex absolute top-1/2 right-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition -translate-y-1/2" data-carousel-next>
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                        
+                    </div>
+                    <p class="text-sm text-center text-gray-600 mt-2 mb-8">
+                    Detailed plan of our usability protocol for gaining customer insight into the <i>Delivery by Ace</i> CTA on Scotts.com's product detail pages
+                    </p>
+
+                      <h3 class="text-xl font-semibold mt-6 mb-2">Key Finding: Ace Last Mile CTA Usability</h3>
+                <div class="p-6 bg-red-50 rounded-xl border-l-4 border-ace-red mt-4">
+                    <p class="font-bold text-xl text-ace-red mb-2">Pricing and Page Handoff Confusion</p>
+                    <ul class="list-disc pl-6 text-base marker:text-accent-secondary">
+                        <li><b> Mixed Reactions on Pricing</b>:  Participants expected transparent, exact pricing and were confused why the price differed slightly from Scotts.com to the Ace checkout page.</li>
+                        <li><b> Unnecessary Step</b>:  Some users felt the forced page transition to Ace was an extra, unnecessary step, especially if there was a minimal price difference between Scotts.com's price and Ace's checkout price.</li>
+                    </ul>
+                </div>
+
+                    <div id="scotts-oto-carousel" class="relative rounded-xl overflow-hidden shadow-lg my-8" data-carousel="static">
+                        
+                        <div class="relative h-[25rem] md:h-[30rem] bg-gray-200" data-carousel-inner>
+                            
+                            <div class="duration-700 ease-in-out py-4" data-carousel-item>
+                                <img src="../assets/imgs/whimsical1.png" alt="Screenshot of our Whimsical user test plan." class="object-contain w-full h-full">
+                            </div>
+                            
+                            <div class="duration-700 ease-in-out hidden py-4" data-carousel-item>
+                                <img src="../assets/imgs/oto-usability.jpg" alt="Description of second image." class="object-contain w-full h-full">
+                            </div>
+                            
+                        </div>
+
+                        <style>
+                        /* Active = black background, white text */
+                        [data-carousel-slide-to][aria-current="true"] {
+                            background-color: rgb(0 0 0); /* black */
+                            color: white;
+                        }
+
+                        /* Inactive = dark gray background, black text */
+                        [data-carousel-slide-to][aria-current="false"] {
+                            background-color: rgb(229 231 235); /* Tailwind gray-600 */
+                            color: black;
+                        }
+                        </style>
+
+                        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-4 left-1/2">
+                        <!-- Number 1 indicator (active) -->
+                        <button
+                            type="button"
+                            class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm transition"
+                            aria-current="true"
+                            aria-label="Slide 1"
+                            data-carousel-slide-to="0">
+                            1
+                        </button>
+
+                        <!-- Number 2 indicator (inactive) -->
+                        <button
+                            type="button"
+                            class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm transition"
+                            aria-current="false"
+                            aria-label="Slide 2"
+                            data-carousel-slide-to="1">
+                            2
+                        </button>
+                        </div>
+
+                        
+                        <button type="button" class="flex absolute top-1/2 left-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition -translate-y-1/2" data-carousel-prev>
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        
+                        <button type="button" class="flex absolute top-1/2 right-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition -translate-y-1/2" data-carousel-next>
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                        
+                    </div>
+                <p class="text-sm text-center text-gray-600 mt-2 mb-8">
+                    Detailed plan of our usability protocol and the tasks and questions that we were interested in our participants completing
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Key Finding: OtO Lawn Website Clarity</h3>
+                <div class="p-6 bg-gray-100 rounded-xl border-l-4 border-gray-400 mt-4">
+                    <p class="font-bold text-xl text-black mb-2">High Interest, High Concern</p>
+                    <ul class="list-disc pl-6 text-base marker:text-accent-secondary">
+                        <li><b>Positive Impressions</b> :  Users immediately liked the OtO device concept (automatic, weather-connected watering).</li>
+                        <li><b> Primary Concern</b>:  Users with large lawns were concerned about coverage area and whether they would need to purchase  multiple devices  (suggesting a clarity issue around product capability).</li>
+                    </ul>
+                </div>
+            </div>
+        </details>
+
+        <details open class="group mb-8 p-8 bg-white border-4 border-dashed border-gray-300 rounded-xl" id="design">
+            <summary class="text-3xl font-bold mb-4 border-b-4 border-accent-primary/70 inline-block pb-1 text-accent-primary flex justify-between items-center pb-1 text-accent-rose cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                4. Ortho Problem Solver: Design & Ideation
+                  <span class="text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M20 12H4" />
+                        
+                        <path class="transition-opacity duration-300 group-open:opacity-0" 
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M12 4v16" />
+                    </svg>
+                </span>
+            </summary>
+            
+            <p class="text-lg mb-8">
+                The Ortho Problem Solver project aimed to digitize the in-store experience, providing consumers with a robust, educational solution for pest and weed issues via a simple QR scan.
+            </p>
+
+            <h3 class="text-2xl font-bold mt-6 mb-4">Artifact: Ideation Flow (In-Store Signage)</h3>
+         <div class="bg-gray-200 rounded-xl overflow-hidden shadow-lg mb-8 flex space-x-4 p-4 h-auto">
+    
+                    <div class="w-1/2 flex flex-col items-center justify-start">
+                        <img src="../assets/imgs/in-store-signage.png" 
+                            alt="Example of a website heatmap showing user click and scroll patterns." 
+                            class="w-full h-full object-contain">
+                        
+                        <p class="text-sm text-gray-600 mt-2 text-center">
+                            <i>The posted <b>QR code</b> will be displayed in home improvement stores in the pest-related aisle to capture customers as they are shopping</i>
+                        </p>
+                    </div>
+
+                    <div class="w-1/2 flex flex-col items-center justify-start">
+                        <img src="../assets/imgs/qr-code.png" 
+                            alt="Placeholder for a horizontal image 1" 
+                            class="w-full h-full object-contain">
+                        
+                        <p class="text-sm text-gray-600 mt-2 text-center">
+                            
+                            <i>Shoppers can scan the QR code to access the <b>Ortho Quiz</b> to learn more about their specific pest problem and find the best solution for them</i>
+
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>      
+            <h3 class="2xl font-bold mt-6 mb-4">Design Requirements & Value</h3>
+            <div class="space-y-3">
+                <p class="text-lg font-medium">The digital solution was designed to achieve three main business values:</p>
+                <ul class="list-disc pl-6 text-lg space-y-2 marker:text-accent-secondary">
+                    <li><b> Capture and Retain</b>:  Capture more consumers shopping in the aisle and retain existing shoppers who are searching for pest-related products.</li>
+                    <li><b>Trusted Solutions</b>:  Consumers receive recommended solutions from a trusted, verified brand.</li>
+                    <li><b> Education</b>:  Consumers are educated on their specific pest/weed problems to tackle current issues and prevent future problems.</li>
+                </ul>
+            </div>
+
+            <h3 class="2xl font-bold mt-6 mb-4">Core Feature Mockups</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner flex flex-col justify-between">
+                    <img src="../assets/imgs/insect_seeker.png" alt="Mockup showing the Insect Seeker flow using physical attributes (wings, antennae)." class="w-full rounded-md h-auto">
+                    <p class="text-sm mt-2 text-gray-600">Insect Seeker: Flow guiding users to identification based on pest attributes (e.g., number of wings, region).</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner flex flex-col justify-between">
+                    <img src="../assets/imgs/garden_seeker.png" class="w-full rounded-md h-auto">
+                    <p class="text-sm mt-2 text-gray-600">Garden Seeker: Regionalized recommendations for prevalent weed and lawn challenges.</p>
+                </div>
+            </div>
+        </details>
+        
+    <details open class="group mb-8 p-8 bg-white border-4 border-dashed border-gray-300 rounded-xl" id="outcomes">
+        <summary class="text-3xl font-bold mb-4 border-b-4 border-accent-primary/70 inline-block pb-1 text-accent-primary flex justify-between items-center pb-1 text-accent-rose cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+        5. Key Takeaways & Next Steps
+                <span class="text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M20 12H4" />
+                        
+                        <path class="transition-opacity duration-300 group-open:opacity-0" 
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M12 4v16" />
+                    </svg>
+                </span>
+        </summary>
+    
+    <div class="text-lg space-y-4">
+        
+       <div class="space-y-8 mt-6">   
+       <div id="default-carousel" class="relative rounded-lg overflow-hidden shadow-lg" data-carousel="static">
+                            <!-- Carousel wrapper -->
+                            <div class="relative h-80 md:h-96" data-carousel-inner>
+                                <!-- Item 1 -->
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <div class="flex w-full h-full">
+                                        
+                                        <div class="w-1/2 h-full">
+                                            <img src="../assets/imgs/volleyball.png"
+                                                class="object-contain w-full h-full"
+                                                alt="Image 1: Part of Combined Slide">
+                                        </div>
+                                        
+                                        <div class="w-1/2 h-full">
+                                            <img src="../assets/imgs/volleyball-2.jpg"
+                                                class="object-contain w-full h-full"
+                                                alt="Image 2: Part of Combined Slide">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Item 3 -->
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <img src="../assets/imgs/vandr.jpeg"
+                                        class="object-contain w-full h-full" alt="Slide 3">
+                                </div>
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <img src="../assets/imgs/Scotts-wrap-up.jpg"
+                                        class="object-contain w-full h-full" alt="Slide 4">
+                                </div>
+                            </div>
+                          <!-- Slider indicators -->
+                               <!-- Slider indicators -->
+                        <style>
+                                /* Active = black */
+                                [data-carousel-slide-to][aria-current="true"] {
+                                    background-color: rgb(0 0 0); /* black */
+                                }
+
+                                /* Inactive = dark gray */
+                                [data-carousel-slide-to][aria-current="false"] {
+                                    background-color: rgb(156 163 175); /* Tailwind gray-600 */
+                                }
+                            </style>
+
+                            <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-4 left-1/2">
+                                <!-- Indicator 1 (active) -->
+                                <button
+                                    type="button"
+                                    class="w-3 h-3 rounded-full bg-black hover:bg-gray-800 transition"
+                                    aria-current="true"
+                                    aria-label="Slide 1"
+                                    data-carousel-slide-to="0">
+                                </button>
+
+                                <!-- Indicator 2 (inactive) -->
+                                <button
+                                    type="button"
+                                    class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-500 transition"
+                                    aria-current="false"
+                                    aria-label="Slide 2"
+                                    data-carousel-slide-to="1">
+                                </button>
+
+                                <!-- Indicator 3 (inactive) -->
+                                <button
+                                    type="button"
+                                    class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-500 transition"
+                                    aria-current="false"
+                                    aria-label="Slide 3"
+                                    data-carousel-slide-to="2">
+                                </button>
+                            </div>
+                            <!-- Slider controls -->
+                            <button type="button"
+                                class="flex absolute top-1/2 left-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition"
+                                data-carousel-prev>
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button type="button"
+                                class="flex absolute top-1/2 right-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition"
+                                data-carousel-next>
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div></div>
+        </div>
+        <h3 class="2xl font-bold mt-6 mb-2">Lessons Learned & Future Directions</h3>
+        <ul class="list-disc pl-6 space-y-2 marker:text-tag-bg">
+            <li><b>Be Intentional and Proactive</b>: It is extremely important, especially in research to be intentional and to ask the right questions. I should have been more proactive with testing our protocol and making sure there were no flaws in our protocol test as this would have saved us time in the long run</li>
+            <li><b>Leverage Your Network</b>: During my internship, there were projects that required the support and input from cross-functional partners. Had I been more proactive and consulted with the stakeholders early on into the process, I would not have wasted time receiving feedback or advice that deterred from the scope or goals of the project</li>
+        </ul>
+    </div>
+</details>
+
+    </main>
+     <!-- Scroll Depth Calculation & Logic -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = Math.min(Math.max(Math.round((scrollTop / scrollHeight) * 100), 0), 100);
+
+            // Update Progress Bar Width & Percentage Text
+            const progressBar = document.getElementById('progress-bar');
+            const scrollPercentageEl = document.getElementById('scroll-percentage');
+            
+            if (progressBar) {
+                progressBar.style.width = scrollPercent + '%';
+            }
+            if (scrollPercentageEl) {
+                scrollPercentageEl.innerText = scrollPercent + '%';
+            }
+        });
+                    document.addEventListener('DOMContentLoaded', () => {
+                const sidebarNav = document.getElementById('sidebar-nav');
+                const navToggle = document.getElementById('nav-toggle');
+                const toggleIcon = document.getElementById('toggle-icon');
+                const navTexts = document.querySelectorAll('.nav-text');
+
+                let isCollapsed = false;
+
+                navToggle.addEventListener('click', () => {
+                    isCollapsed = !isCollapsed;
+                    sidebarNav.classList.toggle('w-14', isCollapsed);
+                    sidebarNav.classList.toggle('w-52', !isCollapsed);
+                    toggleIcon.classList.toggle('rotate-180', isCollapsed);
+                    navTexts.forEach(el => el.classList.toggle('hidden', isCollapsed));
+                });
+            });
+    </script>
+    <footer class="py-8 bg-secondary-gray border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            &copy; 2025 Raj Sureka. Built with Semantic HTML and Tailwind CSS.
+        </div>
+    </footer>
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script> 
+     <script>
+        function toggleAll() {
+            const details = document.querySelectorAll('details');
+            const btn = document.getElementById('toggleBtn');
+            const isClosing = btn.innerText === "Collapse All Sections";
+            
+            details.forEach(detail => {
+                detail.open = !isClosing;
+            });
+            
+            btn.innerText = isClosing ? "Expand All Sections" : "Collapse All Sections";
+        }
+    </script>
+
+<script src="https://unpkg.com/flowbite@2.3.0/dist/flowbite.min.js"></script>
+</body>
+<script src="meyawo.js"></script>
+</html>
